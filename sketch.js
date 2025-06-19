@@ -52,6 +52,7 @@ function setup() {
 
 function draw() {
   background(220);
+  translate(width / 2, height / 2);
 
   let lunghezza_trame = gap * 4;
   for (let lettera of trame) {
@@ -60,10 +61,12 @@ function draw() {
 
   let altezza_totale = trame[0].height + urbane[0].height + gap;
 
-  let x = (width - lunghezza_trame) / 2;
-  let y = (height - altezza_totale) / 2;
+  let x = -lunghezza_trame / 2;
+  let y = -altezza_totale / 2;
 
   const soglia = 0.5;
+
+  scale(width / (lunghezza_trame + 100));
 
   push();
   translate(x, y);
