@@ -51,7 +51,7 @@ function setup() {
 }
 
 function draw() {
-  background(220);
+  background("white");
   translate(width / 2, height / 2);
 
   let lunghezza_trame = gap * 4;
