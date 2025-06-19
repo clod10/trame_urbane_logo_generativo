@@ -47,6 +47,7 @@ function preload() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  frameRate(1);
 }
 
 function draw() {
@@ -62,30 +63,44 @@ function draw() {
   let x = (width - lunghezza_trame) / 2;
   let y = (height - altezza_totale) / 2;
 
+  const soglia = 0.5;
+
   push();
   translate(x, y);
-  for (let lettera of trame) {
+  for (let [index, lettera] of Object.entries(trame)) {
     image(lettera, 0, 0);
+    if (random() > soglia) {
+      const simbolo = immagini_trame[index];
+      image(simbolo, 0, 0);
+    }
     translate(lettera.width + gap, 0);
   }
   pop();
 
   push();
   translate(x, y + trame[0].height + gap);
-  for (let lettera of urbane.slice(0, 3)) {
+  for (let [index, lettera] of Object.entries(urbane.slice(0, 3))) {
     image(lettera, 0, 0);
+    if (random() > soglia) {
+      const simbolo = immagini_urbane[index];
+      image(simbolo, 0, 0);
+    }
     translate(lettera.width + gap, 0);
   }
   pop();
 
   push();
   translate(x + lunghezza_trame, y + trame[0].height + gap);
-  for (let lettera of urbane.slice(3).reverse()) {
+  for (let [index, lettera] of Object.entries(urbane.slice(3).reverse())) {
     translate(-lettera.width, 0);
     if (lettera == urbane[3]) {
       translate(gap / 2, 0);
     }
     image(lettera, 0, 0);
+    if (random() > soglia) {
+      const simbolo = immagini_urbane[5 - index];
+      image(simbolo, 0, 0);
+    }
     translate(-gap, 0);
   }
   pop();
